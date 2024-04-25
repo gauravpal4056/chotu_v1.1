@@ -13,7 +13,6 @@ export const Chotu= forwardRef((props, ref) => {
   const [mouseIn, setMouseIn] =  useState(true)
   const [face, setFace] =  useState(null)
 
-  // const ref = useRef()
   const scroll = useScroll();
   const tl = useRef()
 
@@ -87,11 +86,14 @@ export const Chotu= forwardRef((props, ref) => {
       setMouseIn(true);
     };
   
+    if(!window.matchMedia('(max-width: 768px)').matches){
+
     document.addEventListener('mouseleave', handleMouseLeave);
     document.addEventListener('mousemove', handleMouseMove);
     document.addEventListener('mouseenter', handleMouseEnter);
-
-    gsap.to(ref.current.rotation, { duration: 1, x: 0, y: 0, z: 0 , ease: 'power1.inOut'});
+    }
+    setFace(videoTextures.current[1]);
+    gsap.to(ref.current.rotation, { duration: 0.1, x: -0.2, y: 0, z: 0 , ease: 'power1.inOut'});
 
     return () => {
       document.removeEventListener('mouseleave', handleMouseLeave);
@@ -110,7 +112,7 @@ export const Chotu= forwardRef((props, ref) => {
   useFrame((state) => {
     const t = state.clock.getElapsedTime()
     // ref.current.rotation.set(Math.cos(t / 4) / 8, Math.sin(t / 3) / 4, 0.15 + Math.sin(t / 2) / 8)
-    ref.current.position.y = (0.5 + Math.cos(t / 2)) / 7 - 1.7;
+    // ref.current.position.y = (0.5 + Math.cos(t / 2)) / 7 - 1.7;
   })
 
 
@@ -126,36 +128,53 @@ export const Chotu= forwardRef((props, ref) => {
 
   useLayoutEffect(() =>{
     if(!mouseIn){
-      gsap.to(ref.current.rotation, { duration: 1, x: 0, y: 0, z: 0 , ease: 'power1.inOut'});
+      gsap.to(ref.current.rotation, { duration: 1, x: -0.2, y: 0, z: 0 , ease: 'power1.inOut'});
     }
   
   },[mouseIn])
+  
   useLayoutEffect(()=> {
     tl.current = gsap.timeline({defaults: {duration:2, ease: 'power1.inOut'}})
-    // gsap.from(ref.current.scale, { x: 0.06, y: 0.06, z: 0.06,  duration: 1, delay: 1.5, ease: 'power2.out' })
+    gsap.from(ref.current.scale, { x: 0.055, y: 0.055, z: 0.055,  duration: 1, delay: 1.5, ease: 'power2.out' })
     // gsap.from(ref.current.position, { y: -1.6,  duration: 1, delay: 1.5, ease: 'power2.out' })
     // gsap.from(ref.current.rotation, { x:0,  duration: 1, delay: 1.5, ease: 'power2.out' })
-    tl.current
-      .to(ref.current.position, {x: 1}, 2)
-      .to(ref.current.scale, { x: 0.06, y: 0.06, z: 0.06 }, 2)
-      .to(ref.current.position, {x: -2}, 6)
-      .to(ref.current.position, {x: 0}, 11)
-      .to(ref.current.position, {x: 0}, 13)
+    if(window.matchMedia('(max-width: 768px)').matches){
+      tl.current
+      .to(ref.current.scale, { x: 0.03, y: 0.03, z: 0.03 }, 3)
+
+      .to(ref.current.position, {x: 2, y:1.6 }, 4)
+      .to(ref.current.rotation, {z: 1.9, y:-0.5, x:0.8}, 4)
+
+      .to(ref.current.position, {x: -2, y:1 }, 10)
+      .to(ref.current.rotation, {z: -1.5, y:0.3, x:-0.4}, 10)
+
+      .to(ref.current.position, {x: 0, y:0, z:0}, 14)
+      .to(ref.current.rotation, { y:0, x:0, z:0}, 14)
+
+      .to(ref.current.rotation, {z: 0, y:6.3 ,x:-0.3}, 18)
+      .to(ref.current.position, {x: 0, y:-1, z:0}, 18)
+      .to(ref.current.scale, { x: 0.04, y: 0.04, z: 0.04 }, 18);
+    }else{
+      tl.current
+      .to(ref.current.scale, { x: 0.06, y: 0.06, z: 0.06 }, 3)
+      .to(ref.current.position, {x: 1}, 4)
+      .to(ref.current.position, {x: -2}, 10)
+      .to(ref.current.position, {x: 0}, 18)
       .to(ref.current.position, {x: 0}, 16)
       .to(ref.current.position, {x: 0}, 20)  
       .to(ref.current.scale, { x: 0.04, y: 0.04, z: 0.04 }, 20);
+    }
+    
   }, []);
 
   return (
     <>
-      <group ref={ref} {...props}  position={[0, -1.4, 0]} dispose={null}>
-        <group rotation={[Math.PI / 2, 0, 0]}>
+      <group ref={ref} {...props}  position={[0, -1.9, 0]} dispose={null}>
+        <group rotation={[Math.PI / 2+0.2, 0, 0]}>
           <mesh toneMapped={false} receiveShadow castShadow geometry={nodes.Simple_Assembly_2_1.geometry} material={materials['Glass_(Solid)_White_#1']} >
             {face&&<meshBasicMaterial map={face} />}
           </mesh>
           <mesh receiveShadow castShadow geometry={nodes.Simple_Assembly_2_2.geometry} material={materials['Hard_Rough_Plastic_Blue_#1']} />
-
-      
         </group>
       </group>
     </>
