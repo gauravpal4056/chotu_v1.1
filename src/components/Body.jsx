@@ -67,8 +67,9 @@ function Body() {
                 <button>Read more</button>
               </div>
             </div>
-            
-            <button style={{ position: 'absolute', top: '390vh', left: '50%', transform: `translate(-50%,-50%)` }}>Buy now</button>
+            <div className='h-screen w-screen flex items-center mt-56 justify-center '>
+              <button >Buy now</button>
+            </div>
         </section>
     )
 }
