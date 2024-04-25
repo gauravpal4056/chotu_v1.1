@@ -2,7 +2,7 @@ import React from 'react'
 
 function Nav() {
   return (
-    <header className="z-30  w-full py-5 sm:px-10 px-5 flex justify-between items-center">
+    <header className="z-30  w-full py-5 sm:px-10 px-5 flex  justify-between items-center fixed">
     <div className="flex w-full screen-max-width">
       <img width="32" height="32" src="https://img.icons8.com/led/32/naruto-sign.png" alt="naruto-sign"/>
         <div className="flex flex-1 justify-center max-sm:hidden">
