@@ -25,9 +25,9 @@ function Body() {
 
 
     return (
-        <section ref={containerRef}>
-            <div  className="overflow-hidden h-screen w-screen mt-10 text-9xl  md:text-[15.5em] font-[1000] flex items-start md:items-center justify-center">
-              <div ref={textRef} className='flex items-end md:gap-60 justify-center overflow-hidden '>
+        <section ref={containerRef} >
+            <div  className="overflow-hidden h-screen w-screen  text-9xl  md:text-[15.5em] font-[1000] flex items-start md:items-center justify-center">
+              <div ref={textRef} className='flex items-end md:gap-60 justify-center overflow-hidden mt-14'>
                 <h1 className=" text-gray-600/50  ">CH</h1>
                 <h1 className=" text-gray-600/50  md:hidden">O</h1>
                 <h1 className=" text-gray-600/50  ">TU</h1>
@@ -47,7 +47,7 @@ function Body() {
               </motion.div>
             </div>
 
-            <div className='flex items-center justify-end h-screen w-screen p-10'>
+            <div className='flex items-center justify-end h-[100vh] w-screen p-10'>
               <div className='col' style={{  width: "540px"}}>
                 <h2 style={{ maxWidth: "440px" }}>Dynamic Mode</h2>
                   <p style={{ maxWidth: '440px' }}>{
@@ -67,8 +67,8 @@ function Body() {
                 <button>Read more</button>
               </div>
             </div>
-            <div className='h-screen w-screen flex items-center mt-56 justify-center '>
-              <button >Buy now</button>
+            <div className='h-screen w-screen flex items-end p-20  justify-center '>
+              <button  >Buy now</button>
             </div>
         </section>
     )

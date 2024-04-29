@@ -135,7 +135,7 @@ export const Chotu= forwardRef((props, ref) => {
   
   useLayoutEffect(()=> {
     tl.current = gsap.timeline({defaults: {duration:2, ease: 'power1.inOut'}})
-    gsap.from(ref.current.scale, { x: 0.055, y: 0.055, z: 0.055,  duration: 1, delay: 1.5, ease: 'power2.out' })
+    gsap.from(ref.current.scale, { x: 0.05, y: 0.05, z: 0.05,  duration: 1, delay: 1.5, ease: 'power2.out' })
     // gsap.from(ref.current.position, { y: -1.6,  duration: 1, delay: 1.5, ease: 'power2.out' })
     // gsap.from(ref.current.rotation, { x:0,  duration: 1, delay: 1.5, ease: 'power2.out' })
     if(window.matchMedia('(max-width: 768px)').matches){
@@ -169,7 +169,7 @@ export const Chotu= forwardRef((props, ref) => {
 
   return (
     <>
-      <group ref={ref} {...props}  position={[0, -1.9, 0]} dispose={null}>
+      <group ref={ref} {...props}  position={[0, -1.3, 0]} dispose={null}>
         <group rotation={[Math.PI / 2+0.2, 0, 0]}>
           <mesh toneMapped={false} receiveShadow castShadow geometry={nodes.Simple_Assembly_2_1.geometry} material={materials['Glass_(Solid)_White_#1']} >
             {face&&<meshBasicMaterial map={face} />}

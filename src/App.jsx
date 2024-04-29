@@ -37,11 +37,11 @@ function App() {
             <spotLight intensity={0.5} angle={0.1} penumbra={1} position={[10, 15, -5]} castShadow />      
             <Environment  preset="city"   blur={1} />
             <ContactShadows resolution={256} position={[0, -2, 0]} opacity={0.3} scale={8} blur={4} far={3} />
-            <ScrollControls pages={4} damping={0.1}> 
+            <ScrollControls pages={4.2} damping={0.1}> 
               <Chotu ref={moth} castShadow scale={0.04} />
               <Scroll>
               </Scroll>
-              <Scroll html style={{width:'100%'}}>
+              <Scroll html style={{width:'100%', height:'100%'}}>
                 <Nav />
                 <Body />
               </Scroll>
